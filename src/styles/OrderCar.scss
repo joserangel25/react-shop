@@ -1,0 +1,115 @@
+.shopping-cart {
+  display: grid;
+  place-items: center;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.shopping-cart-container {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--text-input-field);
+}
+.title-container {
+  display: flex;
+  margin: 20px 0 30px 24px;
+}
+.title-container img {
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+.tittle {
+  font-size: var(--md);
+  font-weight: bold;
+  margin-left: 12px;
+}
+.shopping-cart-cards {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  column-gap: .5rem;
+  padding: 0 24px;
+  margin-bottom: 24px;
+  align-items: center;
+  // place-items: center;
+}
+.shopping-cart-cards img:nth-child(1) {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+.shopping-cart-cards img:nth-child(4) {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+.shopping-cart-cards p:nth-child(2) {
+  color: var(--very-light-pink);
+  font-size: var(--sm);
+  text-align: center;
+  // margin-right: 30px;
+}
+.shopping-cart-cards p:nth-child(3) {
+  color: var(--black);
+  font-size: var(--md);
+  font-weight: bold;
+}
+.shopping-cart-cards img:nth-child(4) {
+  margin-left: 10px;
+}
+.total-container {
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+}
+.total-information {
+  background: var(--text-input-field);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 266px;
+  height: 60px;
+  padding: 0 18px;
+}
+.total-information p:nth-child(1){
+  font-size: var(--sm);
+  font-weight: bold;
+}
+.total-information p:nth-child(2){
+  color: var(--black);
+  font-size: var(--md);
+  font-weight: bold;
+}
+.primary-button-order {
+  width: 300px;
+  height: 50px;
+  background: var(--hospital-green);
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  color: var(--white);
+  font-size: var(--md);
+  font-weight: bold;
+}
+@media (max-width: 640px) {
+
+  .shopping-cart-container {
+    width: 100%;
+  }
+  .title-container {
+    display: none;
+  }
+  .shopping-cart-cards {
+    margin-top: 24px;
+    margin-bottom: 0;
+  }
+  .total-information {
+    margin-top: 20px;
+  }
+
+}

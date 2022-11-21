@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import '@styles/Header.scss'
 
@@ -27,26 +27,35 @@ const Header = () => {
     <img src={iconMenu} alt="menu" className="menu" />
 
     <div className="navbar-left">
-      <img src={logoYard} alt="logo" className="nav-logo" />
+      <Link to='/' style={{ alignSelf: 'center'}}>
+        <img src={logoYard} alt="logo" className="nav-logo" />
+      </Link>
 
       <ul>
         <li>
-          <Link to="/">All</Link>
+          <NavLink
+            to={`all-0`}
+            style={ ({isActive}) => ({ color: isActive ? 'red' : 'blue' }) }
+            end
+          >
+            All
+          </NavLink>
+          {/* <Link to={`all-0`}>All</Link> */}
         </li>
         <li>
-          <Link to="/clothes">Clothes</Link>
+          <Link to={`clothes-1`}>Clothes</Link>
         </li>
         <li>
-          <Link to="/electronics">Electronics</Link>
+          <Link to={`electronics-2`}>Electronics</Link>
         </li>
         <li>
-          <Link to="/furnitures">Furnitures</Link>
+          <Link to={`furnitures-3`}>Furnitures</Link>
         </li>
         <li>
-          <Link to="/shoes">Shoes</Link>
+          <Link to={`shoes-4`}>Shoes</Link>
         </li>
         <li>
-          <Link to="/others">Others</Link>
+          <Link to={`others-5`}>Others</Link>
         </li>
       </ul>
     </div>

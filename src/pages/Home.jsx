@@ -1,23 +1,27 @@
-import React, { useState } from 'react'
-import Header from '../components/Header'
+import React, { useEffect } from 'react'
+import { useLocation, Outlet, useNavigate } from 'react-router-dom'
 import AsideDetailProduct from '../containers/AsideDetailProduct'
-import ListadoProductos from '../containers/ListadoProductos'
 import OrderCar from '../containers/OrderCar'
 import { useAppContext } from '../hooks/useAppContext'
 
 const Home = () => {
 
   const { showOrderCar, showDetailProduct } = useAppContext()
-
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if( pathname == '/' ){
+      navigate('all-0')
+    }
+  }, [pathname])
+  
   return (
     <div>
-      <Header />
 
       <div style={{ position: 'relative' }}>
 
-        <ListadoProductos 
-          
-        /> 
+        <Outlet />
 
         {
           showOrderCar && <OrderCar />

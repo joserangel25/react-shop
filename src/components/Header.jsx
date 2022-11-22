@@ -9,6 +9,11 @@ import logoYard from '@logos/logo_yard_sale.svg'
 import iconShoppingCart from '../assets/icons/icon_shopping_cart.svg'
 import { useAppContext } from '../hooks/useAppContext'
 
+const active = {
+  border: '1px solid var(--hospital-green)',
+  color: 'var(--hospital-green)'
+}
+
 const Header = () => {
 
   const [ showMuneProfile, setShowMenuProfile ] = useState(false)
@@ -35,29 +40,59 @@ const Header = () => {
         <li>
           <NavLink
             to={`all-0`}
-            style={ ({isActive}) => ({ color: isActive ? 'red' : 'blue' }) }
-            end
+            // className={({isActive}) => isActive ? 'active' : undefined}
+            style={ ({isActive}) => isActive ? active : undefined }
+            
           >
             All
           </NavLink>
-          {/* <Link to={`all-0`}>All</Link> */}
         </li>
         <li>
-          <Link to={`clothes-1`}>Clothes</Link>
+          <NavLink
+            to={`clothes-1`}
+            style={ ({isActive}) => isActive ? active : undefined }
+          >
+            Clothes
+          </NavLink>
         </li>
         <li>
-          <Link to={`electronics-2`}>Electronics</Link>
+          <NavLink
+            to={`electronics-2`}
+            style={ ({isActive}) => isActive ? active : undefined }
+          >
+            Electronics
+          </NavLink>
+          {/* <Link to={`electronics-2`}>Electronics</Link> */}
         </li>
         <li>
-          <Link to={`furnitures-3`}>Furnitures</Link>
+          <NavLink
+            to={`furnitures-3`}
+            style={ ({isActive}) => isActive ? active : undefined }
+          >
+            Furnitures
+          </NavLink>
+          {/* <Link to={`furnitures-3`}>Furnitures</Link> */}
         </li>
         <li>
-          <Link to={`shoes-4`}>Shoes</Link>
+          <NavLink
+            to={`shoes-4`}
+            style={ ({isActive}) => isActive ? active : undefined }
+          >
+            Shoes
+          </NavLink>
+          {/* <Link to={`shoes-4`}>Shoes</Link> */}
         </li>
         <li>
-          <Link to={`others-5`}>Others</Link>
+          <NavLink
+            to={`others-5`}
+            style={ ({isActive}) => isActive ? active : undefined }
+          >
+            Others
+          </NavLink>
+          {/* <Link to={`others-5`}>Others</Link> */}
         </li>
       </ul>
+      
     </div>
 
     <div className="navbar-right">

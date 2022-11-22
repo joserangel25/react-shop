@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetProducts } from '../hooks/useGetProducts'
 import Product from '../components/Product'
@@ -18,31 +18,52 @@ export default function ListadoProductos({setShowDetailProduct}) {
   const [ loading, setLoading ] = useState(false)
   const [ productos, setProductos ] = useState([])
 
-  useEffect(() => {
+  const getProducts2 = useCallback((async () => {
+    setLoading(true)
+    let api = '';
 
-    const getProducts = async () => {
-      setLoading(true)
-      let api = '';
-
-      if(idCategoria != '0'){
-        api = `https://api.escuelajs.co/api/v1/categories/${idCategoria}/products`
-      } else {
-        api = 'https://api.escuelajs.co/api/v1/products?limit=100&offset=5'
-      }
-
-      try {
-        const res = await fetch(api);
-        const datos = await res.json();
-        // console.log(datos)
-        setProductos(datos)
-      } catch (err) {
-        console.log(err)
-      } finally {
-        setLoading(false)
-      }
+    if(idCategoria != '0'){
+      api = `https://api.escuelajs.co/api/v1/categories/${idCategoria}/products`
+    } else {
+      api = 'https://api.escuelajs.co/api/v1/products?limit=100&offset=5'
     }
 
-    getProducts()
+    try {
+      const res = await fetch(api);
+      const datos = await res.json();
+      // console.log(datos)
+      setProductos(datos)
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setLoading(false)
+    }
+  }), [])
+
+  useEffect(() => {
+
+    // const getProducts = async () => {
+    //   setLoading(true)
+    //   let api = '';
+
+    //   if(idCategoria != '0'){
+    //     api = `https://api.escuelajs.co/api/v1/categories/${idCategoria}/products`
+    //   } else {
+    //     api = 'https://api.escuelajs.co/api/v1/products?limit=100&offset=5'
+    //   }
+
+    //   try {
+    //     const res = await fetch(api);
+    //     const datos = await res.json();
+    //     // console.log(datos)
+    //     setProductos(datos)
+    //   } catch (err) {
+    //     console.log(err)
+    //   } finally {
+    //     setLoading(false)
+    //   }
+    // }
+   getProducts2()
   
     
   }, [idCategoria])

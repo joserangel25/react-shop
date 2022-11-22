@@ -60,7 +60,7 @@ export default function ListadoProductos({setShowDetailProduct}) {
           :
             <div className="cards-container">
               {
-                (!loading && productos.length) 
+                (!loading && productos.length > 0) 
                   &&
                   productos.map(product => (
                     <Product key={product.id} producto={product} setShowDetailProduct={setShowDetailProduct} />

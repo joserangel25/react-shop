@@ -16,7 +16,11 @@ export const AppContextProvider = ({children}) => {
   const [ detailProduct, setDetailProduct ] = useState({});
 
   const [ showOrderCar, setShowOrderCar ] = useState(false)
-  const [ showDetailProduct, setShowDetailProduct ] = useState(false)
+  const [ showDetailProduct, setShowDetailProduct ] = useState(false);
+
+
+  //Estado para mostrar el menu mobile
+  const [ showMenuMobile, setShowMenuMobile ] = useState(false);
 
 
   const addToCar = (producto)  => {
@@ -24,8 +28,6 @@ export const AppContextProvider = ({children}) => {
       alert('Ya existe este elemento')
       return
     }
-    // producto.dateAdd = generarId()
-    // console.log(producto)
     setCarrito([...carrito, producto])
   }
 
@@ -43,7 +45,9 @@ export const AppContextProvider = ({children}) => {
     setShowOrderCar,
     showDetailProduct,
     setShowDetailProduct,
-    deleteProductoOfCar
+    deleteProductoOfCar,
+    showMenuMobile,
+    setShowMenuMobile
   }
   return <AppContext.Provider value={value}>
     {children}

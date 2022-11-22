@@ -20,14 +20,13 @@ export default function OrderCar() {
         <h1 className="tittle">Shopping Cart</h1>
       </div>
 
-      <div>
-
+      {/* <div> */}
       {
         carrito.map(producto => (
           <ProductCar key={producto.id} producto={producto} />
         ))
       }
-      </div>
+      {/* </div> */}
 
 
       {
@@ -35,7 +34,7 @@ export default function OrderCar() {
         (
           <div className="total-container">
             <div className="total-information ">
-              <p>Total</p>
+              <p>Total a Pagar</p>
               <p>$ {calcularTotal()}</p>
             </div>
             <button type="button" name="button" className="primary-button-order">Checkout</button>
@@ -44,8 +43,8 @@ export default function OrderCar() {
         :
         (
           <div className="total-container">
-            <div className="total-information ">
-              <p>Agrega productos</p>
+            <div className="total-information">
+              <p style={{ justifySelf: 'center'}}>Agrega productos</p>
             </div>
           </div>
         )

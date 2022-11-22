@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import { useLocation, Outlet, useNavigate } from 'react-router-dom'
 import AsideDetailProduct from '../containers/AsideDetailProduct'
+import MenuMobile from '../containers/MenuMobile'
 import OrderCar from '../containers/OrderCar'
 import { useAppContext } from '../hooks/useAppContext'
 
 const Home = () => {
 
-  const { showOrderCar, showDetailProduct } = useAppContext()
+  const {  showOrderCar, showDetailProduct, showMenuMobile } = useAppContext()
   const { pathname } = useLocation();
   const navigate = useNavigate();
   
@@ -17,7 +18,9 @@ const Home = () => {
   }, [pathname])
   
   return (
-    <div>
+    <div >
+      
+      
 
       <div style={{ position: 'relative' }}>
 
@@ -31,6 +34,11 @@ const Home = () => {
         }
 
       </div>
+      
+      {
+        showMenuMobile && <MenuMobile />
+      }
+      
     </div>
   )
 }

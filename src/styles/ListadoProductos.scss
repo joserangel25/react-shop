@@ -45,6 +45,14 @@
   margin-bottom: 0;
   color: var(--very-light-pink);
 }
+.content-blank {
+  width: 100%;
+  height: calc(100vh - 190px);
+  // background-color: papayawhip;
+  display: grid;
+  place-content: center;
+}
+
 @media (max-width: 640px) {
   .cards-container {
     grid-template-columns: repeat(auto-fill, 140px);

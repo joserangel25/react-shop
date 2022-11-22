@@ -8,6 +8,7 @@ import iconMenu from '@icons/icon_menu.svg'
 import logoYard from '@logos/logo_yard_sale.svg'
 import iconShoppingCart from '../assets/icons/icon_shopping_cart.svg'
 import { useAppContext } from '../hooks/useAppContext'
+import { listMenu } from '../constants'
 
 const active = {
   border: '1px solid var(--hospital-green)',
@@ -17,7 +18,12 @@ const active = {
 const Header = () => {
 
   const [ showMuneProfile, setShowMenuProfile ] = useState(false)
-  const { carrito, setShowOrderCar, showOrderCar, showDetailProduct, setShowDetailProduct } = useAppContext();
+  const { carrito, 
+          setShowOrderCar, 
+          showOrderCar, 
+          showDetailProduct, 
+          setShowDetailProduct,
+          setShowMenuMobile } = useAppContext();
 
   const handleOpenOrderCar = () => {
     setShowOrderCar(!showOrderCar)
@@ -26,10 +32,17 @@ const Header = () => {
     }
   }
 
+  const modifierUrl = (name, ind) => `${name.toLowerCase()}-${ind}`
+
   return (
     <>
     <nav>
-    <img src={iconMenu} alt="menu" className="menu" />
+    <img 
+      src={iconMenu} 
+      alt="menu" 
+      className="menu"
+      onClick={() => setShowMenuMobile(prevState => !prevState)}
+    />
 
     <div className="navbar-left">
       <Link to='/' style={{ alignSelf: 'center'}}>
@@ -37,60 +50,19 @@ const Header = () => {
       </Link>
 
       <ul>
-        <li>
-          <NavLink
-            to={`all-0`}
-            // className={({isActive}) => isActive ? 'active' : undefined}
-            style={ ({isActive}) => isActive ? active : undefined }
-            
-          >
-            All
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to={`clothes-1`}
-            style={ ({isActive}) => isActive ? active : undefined }
-          >
-            Clothes
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to={`electronics-2`}
-            style={ ({isActive}) => isActive ? active : undefined }
-          >
-            Electronics
-          </NavLink>
-          {/* <Link to={`electronics-2`}>Electronics</Link> */}
-        </li>
-        <li>
-          <NavLink
-            to={`furnitures-3`}
-            style={ ({isActive}) => isActive ? active : undefined }
-          >
-            Furnitures
-          </NavLink>
-          {/* <Link to={`furnitures-3`}>Furnitures</Link> */}
-        </li>
-        <li>
-          <NavLink
-            to={`shoes-4`}
-            style={ ({isActive}) => isActive ? active : undefined }
-          >
-            Shoes
-          </NavLink>
-          {/* <Link to={`shoes-4`}>Shoes</Link> */}
-        </li>
-        <li>
-          <NavLink
-            to={`others-5`}
-            style={ ({isActive}) => isActive ? active : undefined }
-          >
-            Others
-          </NavLink>
-          {/* <Link to={`others-5`}>Others</Link> */}
-        </li>
+        {
+          listMenu.map((item, ind) => (
+            <li key={ind}>
+              <NavLink
+                to={modifierUrl(item.name, ind)}
+                style={ ({isActive}) => isActive ? active : undefined }
+              >
+                {item.name}
+              </NavLink>
+            </li>
+          ))
+        }
+        
       </ul>
       
     </div>

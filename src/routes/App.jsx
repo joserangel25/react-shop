@@ -12,12 +12,15 @@ import PasswordSend from '../pages/PasswordSend';
 import CreateUsser from '../pages/CreateUsser';
 import { AppContextProvider } from '../context/AppContext';
 import ListadoProductos from '../containers/ListadoProductos';
+import { AuthProvider } from '../context/AuthContext';
 
 const App = () => {
   return (
     
     <AppContextProvider>
     <BrowserRouter>
+      <AuthProvider>
+
       <Layout>
         <Routes>
             <Route path='/' element={<Home />}>
@@ -30,6 +33,7 @@ const App = () => {
             <Route path='*' element={<NotFound />} />
         </Routes>
       </Layout>
+      </AuthProvider>
         
     </BrowserRouter>
     </AppContextProvider>       

@@ -50,9 +50,9 @@ const Login = () => {
         </form>
 
         <button className="secondary-button signup-button">
-          {/* <Link to='/sigin' className='link-sigin'> */}
+          <Link to='/sigin'>
             Sign up
-          {/* </Link> */}
+          </Link>
         </button>
       </div>
     </div>

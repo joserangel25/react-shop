@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { useLocation, Outlet, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { useLocation, Outlet, useNavigate, Navigate } from 'react-router-dom'
 import AsideDetailProduct from '../containers/AsideDetailProduct'
 import MenuMobile from '../containers/MenuMobile'
 import OrderCar from '../containers/OrderCar'
@@ -11,12 +11,10 @@ const Home = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   
-  useEffect(() => {
-    if( pathname == '/' ){
-      navigate('all-0')
+  if( pathname == '/' ){
+      return <Navigate to='all-0' />
     }
-  }, [pathname])
-  
+
   return (
     <div >
       

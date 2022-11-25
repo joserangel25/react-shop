@@ -1,9 +1,14 @@
-import React, { createContext } from 'react'
+import React, { useState, createContext } from 'react'
 
 export const AuthContext = createContext();
-const API_USERS = 'https://api.escuelajs.co/api/v1/users/'
+const API_USERS = 'https://api.escuelajs.co/api/v1/users/';
+const API_AUTH  = 'https://api.escuelajs.co/api/v1/auth/login'
 
 export const AuthProvider = ({children}) => {
+
+  const [ loadingAuth, setLoadingAuth ] = useState(false);
+  const [ mensaje, setMensaje ] = useState('');
+  const [ usser, setUsser  ] = useState({});
 
   const createUser = async (usuario) => {
     usuario.avatar = 'https://api.lorem.space/image/face?w=640&h=480&r=4650'
@@ -38,8 +43,43 @@ export const AuthProvider = ({children}) => {
     }
   }
 
+  const handleLogin = async (usuario) => {
+    setLoadingAuth(true)
+    setMensaje('')
+    try {
+      const res = await fetch(API_AUTH, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(usuario)
+      });
+      const data = await res.json()
+      if(data.access_token){
+        setUsser({
+          email: usuario.email,
+          ...data
+        })
+        setMensaje('Logeado correctamente. Transfiriendo...')
+        return { access: true }
+      } else {
+        setMensaje(data.message)
+        return { ...data, access: false }
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoadingAuth(false)
+    }
+  }
+
   const auth = {
-    createUser
+    loadingAuth,
+    mensaje,
+    setMensaje,
+    createUser,
+    handleLogin,
+    usser
   }
   return (
     <AuthContext.Provider value={auth}>

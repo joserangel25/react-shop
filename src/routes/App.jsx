@@ -21,7 +21,7 @@ const App = () => {
     <BrowserRouter>
       <AuthProvider>
 
-      <Layout>
+        <Layout>
         <Routes>
             <Route path='/' element={<Home />}>
               <Route path=':categoria' element={<ListadoProductos />} />
@@ -32,7 +32,7 @@ const App = () => {
             <Route path='/password-send' element={<PasswordSend />} />
             <Route path='*' element={<NotFound />} />
         </Routes>
-      </Layout>
+        </Layout>
       </AuthProvider>
         
     </BrowserRouter>

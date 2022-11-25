@@ -30,3 +30,6 @@ export const listMenu = [
     image: "https://api.lorem.space/image?w=640&h=480&r=2025"
   }
 ]
+
+//Helpers
+export const objectIsValid = (obj) => (Object.keys(obj).length > 0)

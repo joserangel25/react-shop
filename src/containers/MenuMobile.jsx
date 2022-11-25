@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { listMenu } from '../constants'
+import { listMenu, objectIsValid } from '../constants'
 import '@styles/MenuMobile.scss'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 export default function MenuMobile() {
 
+  const { usser } = useAuthContext();
   const modifierUrl = (name, ind) => `${name.toLowerCase()}-${ind}`
 
   return (
@@ -29,23 +31,35 @@ export default function MenuMobile() {
           <div className="linea">
 
           </div>
-          <ul className="info-cuenta">
-            <li>
-              <Link to="/">My orders</Link>
-            </li>
-            <li>
-              <Link to="/">My account</Link>
-            </li>
-          </ul>
 
-        <ul>
-          <li>
-            <Link to="#" className="email">contacto@rangel.com</Link>
-          </li>
-          <li>
-            <Link to="#" className="sign-out">Sign out</Link>
-          </li>
-        </ul>
+          {
+            objectIsValid(usser) ?
+            (
+              <>
+                <ul className="info-cuenta">
+                  <li>
+                    <Link to="/">My orders</Link>
+                  </li>
+                  <li>
+                    <Link to="/">My account</Link>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    <Link to="#" className="email">{usser.email}</Link>
+                  </li>
+                  <li>
+                    <Link to="#" className="sign-out">Sign out</Link>
+                  </li>
+                </ul>
+              </>
+            )
+              :
+              <ul>
+                <li><Link>Inicia sesión</Link></li>
+              </ul>
+          }
 
         </div>
       </div>

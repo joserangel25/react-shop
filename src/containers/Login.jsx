@@ -1,11 +1,18 @@
 import React, { useRef } from 'react'
-import { Link } from 'react-router-dom' 
+import { Link, useNavigate } from 'react-router-dom' 
+import { useAuthContext } from '../hooks/useAuthContext';
+import Spinner from '@components/Spinner'
+
+import logoYard from '@logos/logo_yard_sale.svg';
+
 import '../styles/Login.scss'
 
 const Login = () => {
   const refForm = useRef(null);
+  const navigate = useNavigate();
+  const { handleLogin, loadingAuth, mensaje, setMensaje } = useAuthContext();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData(refForm.current);
     const userName = formData.get('email');
@@ -14,16 +21,27 @@ const Login = () => {
       alert('Todos los campos son obligatarios')
       return
     }
-    const data = {
-      userName,
+    const dataUsser = {
+      email: userName,
       password
     }
-    console.log(data)
+
+    const { access } = await handleLogin(dataUsser)
+    if(access){
+      navigate('/all-0')
+      setMensaje('')
+    }
   }
   return (
-    <div className="login">
+    <div className="login-page">
+      {
+        loadingAuth && <Spinner />
+      }
+      {
+        (!loadingAuth && mensaje) && <p>{mensaje}</p>
+      }
       <div className="form-container-login">
-        <img src="./logos/logo_yard_sale.svg" alt="logo" className="logo" />
+        <img src={logoYard} alt="logo" className="logo-login" />
 
         <form className="form" ref={refForm} onSubmit={handleSubmit}>
           <label htmlFor="email" className="label">Email address</label>

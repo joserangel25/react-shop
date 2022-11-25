@@ -96,6 +96,10 @@
   font-size: var(--md);
   font-weight: bold;
 }
+.disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
 @media (max-width: 640px) {
 
   .shopping-cart-container {

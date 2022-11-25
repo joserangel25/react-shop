@@ -3,14 +3,18 @@ import ProductCar from '../components/ProductCar'
 import '../styles/OrderCar.scss'
 import iconFlecha from '@icons/flechita.svg'
 import { useAppContext } from '../hooks/useAppContext'
+import { useAuthContext } from '../hooks/useAuthContext'
+import { objectIsValid } from '../constants'
 
 export default function OrderCar() {
   const { carrito, setShowOrderCar } = useAppContext();
+  const { usser } = useAuthContext();
 
   const calcularTotal = () => {
     const total = carrito.reduce((val, nuevoItem) => val + nuevoItem.price, 0)
     return total
   }
+
 
   return (
     <section className="shopping-cart">
@@ -20,14 +24,11 @@ export default function OrderCar() {
         <h1 className="tittle">Shopping Cart</h1>
       </div>
 
-      {/* <div> */}
       {
         carrito.map(producto => (
           <ProductCar key={producto.id} producto={producto} />
         ))
       }
-      {/* </div> */}
-
 
       {
         carrito.length ?
@@ -37,7 +38,14 @@ export default function OrderCar() {
               <p>Total a Pagar</p>
               <p>$ {calcularTotal()}</p>
             </div>
-            <button type="button" name="button" className="primary-button-order">Checkout</button>
+            <button 
+              type="button" 
+              name="button" 
+              className={`primary-button-order ${objectIsValid(usser) ? '' : 'disabled'}`}
+              disabled={objectIsValid(usser)}
+            >
+              {objectIsValid(usser) ? 'Checkout' : 'Inicia sesión' }
+            </button>
           </div>
         )
         :

@@ -8,7 +8,8 @@ import iconMenu from '@icons/icon_menu.svg'
 import logoYard from '@logos/logo_yard_sale.svg'
 import iconShoppingCart from '../assets/icons/icon_shopping_cart.svg'
 import { useAppContext } from '../hooks/useAppContext'
-import { listMenu } from '../constants'
+import { listMenu, objectIsValid } from '../constants'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const active = {
   border: '1px solid var(--hospital-green)',
@@ -24,7 +25,10 @@ const Header = () => {
           showDetailProduct, 
           setShowDetailProduct,
           setShowMenuMobile } = useAppContext();
-
+  
+  const { usser } = useAuthContext();
+  // console.log(usser)
+ 
   const handleOpenOrderCar = () => {
     setShowOrderCar(!showOrderCar)
     if(showDetailProduct){
@@ -69,10 +73,19 @@ const Header = () => {
 
     <div className="navbar-right">
       <ul>
-        <li 
-          className="navbar-email"
-          onClick={() => setShowMenuProfile(!showMuneProfile)}
-        >platzi@example.com</li>
+        {
+          objectIsValid(usser)?
+          (
+            <li 
+                className="navbar-email"
+                onClick={() => setShowMenuProfile(!showMuneProfile)}
+            >
+              {usser.email}
+            </li>
+          )
+          :
+          <li><Link to='/login' className="navbar-email">Inicia sesión</Link></li>
+        }
         <li className="navbar-shopping-cart" onClick={handleOpenOrderCar}>
           <img src={iconShoppingCart} alt="shopping cart" />
           <div>{carrito.length}</div>

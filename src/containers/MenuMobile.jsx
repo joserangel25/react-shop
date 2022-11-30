@@ -57,7 +57,7 @@ export default function MenuMobile() {
             )
               :
               <ul>
-                <li><Link>Inicia sesión</Link></li>
+                <li><Link to='/login'>Inicia sesión</Link></li>
               </ul>
           }
 

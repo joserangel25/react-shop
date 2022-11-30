@@ -7,12 +7,12 @@ export default function Product({producto}) {
   const { addToCar, setShowOrderCar, showOrderCar, setDetailProduct, setShowDetailProduct } = useAppContext();
 
   const handleAddToCar = () => {
-    console.log('agregado al carrito')
     addToCar(producto)
   }
 
   const openAsideDetail = () => {
     setShowDetailProduct(true)
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     setDetailProduct(producto)
     if(showOrderCar) setShowOrderCar(false)
   }

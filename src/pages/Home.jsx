@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation, Outlet, useNavigate, Navigate } from 'react-router-dom'
+import { useLocation, Outlet, Navigate } from 'react-router-dom'
 import AsideDetailProduct from '../containers/AsideDetailProduct'
 import MenuMobile from '../containers/MenuMobile'
 import OrderCar from '../containers/OrderCar'
@@ -7,9 +7,8 @@ import { useAppContext } from '../hooks/useAppContext'
 
 const Home = () => {
 
-  const {  showOrderCar, showDetailProduct, showMenuMobile } = useAppContext()
+  const { showOrderCar, showDetailProduct, showMenuMobile } = useAppContext()
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   
   if( pathname == '/' ){
       return <Navigate to='all-0' />

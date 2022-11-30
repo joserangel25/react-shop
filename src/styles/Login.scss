@@ -13,6 +13,7 @@
   width: 150px;
   margin-bottom: 48px;
   justify-self: center;
+  cursor: pointer;
   // display: none;
 }
 .form {
@@ -64,6 +65,11 @@
   font-size: var(--md);
   font-weight: bold;
   height: 50px;
+}
+
+.secondary-button a {
+  color: var(--hospital-green);
+  text-decoration: none;
 }
 .login-button {
   margin-top: 14px;

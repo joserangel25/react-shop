@@ -32,6 +32,10 @@ const Login = () => {
       setMensaje('')
     }
   }
+
+  const handleLogoClick = () => {
+    navigate('/')
+  }
   return (
     <div className="login-page">
       {
@@ -41,7 +45,9 @@ const Login = () => {
         (!loadingAuth && mensaje) && <p>{mensaje}</p>
       }
       <div className="form-container-login">
-        <img src={logoYard} alt="logo" className="logo-login" />
+
+        <img src={logoYard} alt="logo" className="logo-login" onClick={handleLogoClick} />
+
 
         <form className="form" ref={refForm} onSubmit={handleSubmit}>
           <label htmlFor="email" className="label">Email address</label>
@@ -68,7 +74,7 @@ const Login = () => {
         </form>
 
         <button className="secondary-button signup-button">
-          <Link to='/sigin'>
+          <Link to='/sigin' >
             Sign up
           </Link>
         </button>
